@@ -1,0 +1,27 @@
+import mongoose from "mongoose";
+import mongoosePaginate from "mongoose-paginate-v2";
+const orderSchema = new mongoose.Schema(
+  {
+    orderNumber: { type: String },
+    userId: {
+      type: mongoose.Types.ObjectId,
+      require: true
+    },
+    email: { type: String },
+    products: [
+      {
+        type: Object
+      }
+    ],
+    total: { type: Number, require: true },
+    shipping: { type: String, require: true },
+    phone: { type: Number },
+    fullName: { type: String },
+    payMethod: { type: Number, default: 0 },
+    status: { type: Number, default: 1 },
+  }, {
+  timestamps: true
+}
+);
+orderSchema.plugin(mongoosePaginate);
+export default mongoose.model('Order', orderSchema);
