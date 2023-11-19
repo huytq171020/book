@@ -4,6 +4,9 @@ const productSchema = new mongoose.Schema({
   name: {
     type: String,
   },
+  authors:{
+    type: String,
+  },
   price: {
     type: Number,
   },

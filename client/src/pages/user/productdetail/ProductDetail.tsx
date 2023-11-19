@@ -75,6 +75,9 @@ const ProductDetail = () => {
                                                 <h2 className="max-w-xl mt-6 mb-6 text-xl font-semibold leading-loose tracking-wide text-gray-700 md:text-2xl dark:text-gray-300">
                                                     {data?.name}
                                                 </h2>
+                                                <h2 className="max-w-xl mt-6 mb-6 text-sm font-semibold leading-loose tracking-wide text-gray-700 md:text-sm dark:text-gray-300">
+                                                 tác giả:   {data?.authors}
+                                                </h2>
                                                 <div className="flex flex-wrap items-center mb-6">
                                                     <span>
                                                         <Rate tooltips={desc} onChange={setValue} value={value} />

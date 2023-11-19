@@ -63,9 +63,9 @@ const Cart: FunctionComponent<CartProps> = () => {
                                                     </h3>
                                                     <p>{item.description}</p>
                                                     <p>
-                                                        <strong>Size:</strong> {item.sizeId}
-                                                        <br />
-                                                        <strong>Color:</strong> {item.colorId}
+                                                        <strong>tác giả:</strong> {item.authors}
+                                                      
+                                                      
                                                         <br />
                                                         <strong>Type:</strong> {item.categoryId?.name ? item.categoryId?.name : 'Chưa cập nhật'}
                                                     </p>

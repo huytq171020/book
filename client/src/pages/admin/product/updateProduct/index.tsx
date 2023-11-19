@@ -3,9 +3,9 @@ import { Button, Checkbox, Col, Form, Input, InputNumber, Radio, Row, Select, Ta
 import { useGetProductByIdQuery, useUpdateProductMutation } from '@/services/product';
 import { useGetCategoriesQuery } from '@/services/category';
 import { toast } from 'react-toastify';
-import { useGetBrandsQuery, useGetColorsQuery, useGetSizesQuery } from '@/services/option';
+
 import UploadFileServer from '@/components/uploads/UploadFile';
-import { CheckboxChangeEvent } from 'antd/es/checkbox';
+
 
 type SizeType = Parameters<typeof Form>[0]['size'];
 
@@ -27,24 +27,8 @@ const UpdateProduct: React.FC<{ productId: string; handleUpdateProduct: () => vo
     const [update] = useUpdateProductMutation();
 
     const [images, setImages] = useState<string[]>(currentProduct?.images!);
-    const [colorId, setColorId] = useState<string[]>([]);
-    const [sizeId, setSizeId] = useState<string[]>([]);
 
-    const handleChangeColor = (e: CheckboxChangeEvent) => {
-        if (e.target.checked) {
-            setColorId((prev) => [...prev, e.target.value]);
-        } else {
-            setColorId((prev) => [...prev.filter((item) => item !== e.target.value)]);
-        }
-    };
 
-    const hanldeChangeSizes = (e: CheckboxChangeEvent) => {
-        if (e.target.checked) {
-            setSizeId((prev) => [...prev, e.target.value]);
-        } else {
-            setSizeId((prev) => [...prev.filter((item) => item !== e.target.value)]);
-        }
-    };
 
     const onFinish = async (values: any) => {
         try {
@@ -56,8 +40,7 @@ const UpdateProduct: React.FC<{ productId: string; handleUpdateProduct: () => vo
                 updatedProduct: {
                     ...currentProduct,
                     ...values,
-                    colorId,
-                    sizeId,
+                   
                     images,
                 },
             });
@@ -78,14 +61,13 @@ const UpdateProduct: React.FC<{ productId: string; handleUpdateProduct: () => vo
         if (currentProduct) {
             form.setFieldsValue({
                 name: currentProduct.name,
+                authors: currentProduct.authors,
                 price: currentProduct.price,
                 sale_off: currentProduct.sale_off,
                 quantity: currentProduct.quantity,
                 description: currentProduct.description,
                 categoryId: currentProduct.categoryId?._id,
-                brandId: currentProduct.brandId?._id,
-                colorId: [],
-                sizeId: [],
+               
             });
         }
     }, [currentProduct, form]);
@@ -129,6 +111,18 @@ const UpdateProduct: React.FC<{ productId: string; handleUpdateProduct: () => vo
                         ]}
                     >
                         <Input placeholder="Vui lòng nhập tên sản phẩm" style={{ width: '100%' }} min={0} />
+                    </Form.Item>
+                    <Form.Item
+                        name="authors"
+                        label="Tác giả"
+                        rules={[
+                            {
+                                required: true,
+                                message: 'Tên Tác giả là cần thiết!',
+                            },
+                        ]}
+                    >
+                        <Input placeholder="Vui lòng nhập tên Tác giả" style={{ width: '100%' }} min={0} />
                     </Form.Item>
                     <Form.Item
                         name="price"

@@ -96,6 +96,10 @@ const ProductItem: FunctionComponent<ProductItemProps> = ({ arrangeList, product
                         <h3 className="text-center mt-4 h-[50px] text-sm lg:text-base line-clamp-2 font-normal">
                             <Link to={`/detail/${product?._id!}`}>{product?.name}</Link>
                         </h3>
+                        <h3 className="text-center mt-4 h-[50px] text-sm lg:text-base line-clamp-2 font-normal">
+                            Tác Giả:{product?.authors}
+                        </h3>
+                     
                         <p className="mb-3 text-lg font-medium text-center text-gray-600">
                             <span className="text-primary/90 dark:text-gray-300 text-sm lg:text-xl">
                                 ${product?.price}

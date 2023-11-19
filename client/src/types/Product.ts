@@ -15,12 +15,11 @@ export interface PaginatedProduct {
 export interface ProductType {
     _id: string;
     name: string;
+    authors:string;
     price: number;
     sale_off: number;
     description: string;
     quantity: number;
-  
-
     images: string[];
     createAt:Date;
     updateAt:Date;

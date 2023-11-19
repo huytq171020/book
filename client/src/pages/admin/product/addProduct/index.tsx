@@ -5,7 +5,7 @@ import { useGetCategoriesQuery } from '@/services/category';
 import { toast } from 'react-toastify';
 import { useCreateProductMutation } from '@/services/product';
 import { ProductType } from '@/types/Product';
-import { useGetBrandsQuery, useGetColorsQuery, useGetSizesQuery } from '@/services/option';
+
 import UploadFileServer from '@/components/uploads/UploadFile';
 
 const { TextArea } = Input;
@@ -29,24 +29,24 @@ const AddProduct = ({ handleModalClose }: AddProductProps) => {
 
     const onFinish = async (values: any) => {
         try {
-          setIsLoading(true);
-      
-          const { size, categoryId, ...restValues } = values;
-      
-          await mutateCreateProduct({ ...restValues, categoryId, images }).unwrap();
-      
-          const newProduct = { ...restValues, categoryId };
-          setProducts((prevProducts) => [...prevProducts, newProduct]);
-      
-          form.resetFields();
-          toast.success('Tạo sản phẩm thành công');
-          handleModalClose();
+            setIsLoading(true);
+
+            const { size, categoryId, ...restValues } = values;
+
+            await mutateCreateProduct({ ...restValues, categoryId, images }).unwrap();
+
+            const newProduct = { ...restValues, categoryId };
+            setProducts((prevProducts) => [...prevProducts, newProduct]);
+
+            form.resetFields();
+            toast.success('Tạo sản phẩm thành công');
+            handleModalClose();
         } catch (error) {
-          toast.error('Tạo sản phẩm không thành công');
+            toast.error('Tạo sản phẩm không thành công');
         } finally {
-          setIsLoading(false);
+            setIsLoading(false);
         }
-      };
+    };
 
     return (
         <Form
@@ -71,7 +71,10 @@ const AddProduct = ({ handleModalClose }: AddProductProps) => {
             >
                 <Input placeholder="Tên sản phẩm" type="text" />
             </Form.Item>
-
+            <Form.Item label="tác giả" name="authors" rules={[{ required: true, message: 'Vui lòng nhập tác giả' }]}>
+                <Input placeholder="tên tác giả" type="text" />
+            </Form.Item>
+            
             <Form.Item label="Giá gốc" name="price" rules={[{ required: true, message: 'Vui lòng nhập Giá' }]}>
                 <Input placeholder="Giá gốc sản phẩm" type="number" />
             </Form.Item>
@@ -108,11 +111,11 @@ const AddProduct = ({ handleModalClose }: AddProductProps) => {
             </Form.Item>
 
             {/* Option start */}
-           
 
-          
 
-          
+
+
+
 
             <Form.Item
                 label="Danh mục"

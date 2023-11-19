@@ -103,6 +103,9 @@ const ListProduct: React.FC = () => {
               <th scope="col" className="text-center text-xs font-medium py-3">
                 Tên sản phẩm
               </th>
+              <th scope="col" className="pr-40 text-center text-xs font-medium py-3">
+              Tên Tác Giả
+              </th>
               <th scope="col" className="text-center text-xs font-medium py-3">
                 Số Lượng
               </th>
@@ -145,8 +148,10 @@ const ListProduct: React.FC = () => {
                   <td className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                     {product.name.slice(0, 20)}...
                   </td>
+                  <td className="text-center py-4">{product.authors}</td>
                   <td className="text-center py-4">{product.quantity}</td>
                   <td className="text-center py-4">{product.categoryId?.name}</td>
+                
                   <td className="pr-4 text-center py-4">{product.price}</td>
                   <td className="pr-4 py-4">
                     <Space size="middle">
